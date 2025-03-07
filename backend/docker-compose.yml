@@ -1,0 +1,32 @@
+version: '3.8'
+
+services:
+  backend:
+    build: .
+    container_name: chatapp-backend
+    restart: always
+    ports:
+      - "4000:4000" 
+    env_file:
+      - .env
+    environment:
+    - DB_HOST=db
+    - DB_PORT=5432
+    depends_on:
+    - db
+
+  db:
+    image: postgres:14.2
+    container_name: chatapp-db
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=shiva1234
+      - POSTGRES_DB=chatApplication
+    ports:
+      - "5433:5432"
+    volumes:
+      - db_data:/var/lib/postgresql/data
+    restart: unless-stopped
+    
+volumes:
+  db_data:

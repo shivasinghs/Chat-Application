@@ -1,0 +1,11 @@
+# Node modules
+
+node_modules/
+
+# Environment variables
+
+.env
+
+# Public directory (if it contains build files or uploads)
+
+public/
